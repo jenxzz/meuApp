@@ -3,12 +3,12 @@ import { useState } from 'react';
 
 export default function App() {
   const [id, setId] = useState('');
-  const [nome, setNome] = useState('Nome aparecerá aqui');
-  const [categoria, setCategoria] = useState('Categoria aparecerá aqui');
-  const [ano_lancamento, setAno_lancamento] = useState('Ano de lançamento aparecerá aqui')
+  const [nome, setNome] = useState('Nome do jogo');
+  const [categoria, setCategoria] = useState('Categoria do jogo');
+  const [ano_lancamento, setAno_lancamento] = useState('Ano de lançamento do jogo'); 
   const [carregando, setCarregando] = useState(false);
 
-  async function buscarUserAsync() {
+  async function buscarUserAsync() {206363
     try {
       setCarregando(true);
 
