@@ -4,18 +4,20 @@ import { useState } from 'react';
 export default function App() {
   const [id, setId] = useState('');
   const [nome, setNome] = useState('Nome aparecerá aqui');
-  const [profissao, setProfissao] = useState('Profissão aparecerá aqui');
+  const [categoria, setCategoria] = useState('Categoria aparecerá aqui');
+  const [ano_lancamento, setAno_lancamento] = useState('Ano de lançamento aparecerá aqui')
   const [carregando, setCarregando] = useState(false);
 
   async function buscarUserAsync() {
     try {
       setCarregando(true);
 
-      const response = await fetch(`http://localhost:3000/usuario/${id}`);
+      const response = await fetch(`https://api-jogos-wq4x.onrender.com/api/jogos/id/${id}`);
       const dados = await response.json();
 
       setNome(dados.nome);
-      setProfissao(dados.profissao);
+      setCategoria(dados.categoria);
+      setAno_lancamento(dados.ano_lancamento)
 
       setCarregando(false);
     } catch (erro) {
@@ -31,17 +33,18 @@ export default function App() {
       ) : (
         <>
           <Text style={styles.text}>{nome}</Text>
-          <Text style={styles.text}>{profissao}</Text>
+          <Text style={styles.text}>{categoria}</Text>
+          <Text style={styles.text}>{ano_lancamento}</Text>
 
           <TextInput
-            placeholder="Digite o ID (1 ou 2)"
+            placeholder="Digite o ID"
             value={id}
             onChangeText={setId}
             style={styles.input}
           />
 
           <TouchableOpacity style={styles.button} onPress={buscarUserAsync}>
-            <Text style={styles.buttonText}>Buscar usuário</Text>
+            <Text style={styles.buttonText}>Buscar jogos</Text>
           </TouchableOpacity>
         </>
       )}
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
     padding: 5
   },
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: 'purple',
     padding: 10,
     borderRadius: 5
   },
