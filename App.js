@@ -10,14 +10,17 @@ export default function App() {
   async function buscarUserAsync() {
     try {
       setCarregando(true);
+
       const response = await fetch(`http://localhost:3000/usuario/${id}`);
       const dados = await response.json();
 
       setNome(dados.nome);
       setProfissao(dados.profissao);
+
       setCarregando(false);
     } catch (erro) {
       console.log("Erro:", erro);
+      setCarregando(false);
     }
   }
 
